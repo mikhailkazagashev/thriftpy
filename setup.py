@@ -32,11 +32,12 @@ dev_requires = [
 
 
 # cython detection
-try:
-    from Cython.Build import cythonize
-    CYTHON = True
-except ImportError:
-    CYTHON = False
+#try:
+#    from Cython.Build import cythonize
+#    CYTHON = True
+#except ImportError:
+#    CYTHON = False
+CYTHON = False
 
 cmdclass = {}
 ext_modules = []
@@ -46,23 +47,23 @@ PYPY = "__pypy__" in sys.modules
 UNIX = platform.system() in ("Linux", "Darwin")
 
 # only build ext in CPython with UNIX platform
-if UNIX and not PYPY:
-    # rebuild .c files if cython available
-    if CYTHON:
-        cythonize("thriftpy/transport/cybase.pyx")
-        cythonize("thriftpy/transport/**/*.pyx")
-        cythonize("thriftpy/protocol/cybin/cybin.pyx")
-
-    ext_modules.append(Extension("thriftpy.transport.cybase",
-                                 ["thriftpy/transport/cybase.c"]))
-    ext_modules.append(Extension("thriftpy.transport.buffered.cybuffered",
-                                 ["thriftpy/transport/buffered/cybuffered.c"]))
-    ext_modules.append(Extension("thriftpy.transport.memory.cymemory",
-                                 ["thriftpy/transport/memory/cymemory.c"]))
-    ext_modules.append(Extension("thriftpy.transport.framed.cyframed",
-                                 ["thriftpy/transport/framed/cyframed.c"]))
-    ext_modules.append(Extension("thriftpy.protocol.cybin",
-                                 ["thriftpy/protocol/cybin/cybin.c"]))
+#if UNIX and not PYPY:
+#    # rebuild .c files if cython available
+#    if CYTHON:
+#        cythonize("thriftpy/transport/cybase.pyx")
+#        cythonize("thriftpy/transport/**/*.pyx")
+#        cythonize("thriftpy/protocol/cybin/cybin.pyx")
+#
+#    ext_modules.append(Extension("thriftpy.transport.cybase",
+#                                 ["thriftpy/transport/cybase.c"]))
+#    ext_modules.append(Extension("thriftpy.transport.buffered.cybuffered",
+#                                 ["thriftpy/transport/buffered/cybuffered.c"]))
+#    ext_modules.append(Extension("thriftpy.transport.memory.cymemory",
+#                                 ["thriftpy/transport/memory/cymemory.c"]))
+#    ext_modules.append(Extension("thriftpy.transport.framed.cyframed",
+#                                 ["thriftpy/transport/framed/cyframed.c"]))
+#    ext_modules.append(Extension("thriftpy.protocol.cybin",
+#                                 ["thriftpy/protocol/cybin/cybin.c"]))
 
 setup(name="thriftpy",
       version=version,
